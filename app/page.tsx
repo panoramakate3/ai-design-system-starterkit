@@ -1,15 +1,17 @@
+import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 
 const components = [
-  { name: 'Button', description: 'Interactive button component' },
-  { name: 'Card', description: 'Container component for grouped content' },
-  { name: 'Badge', description: 'Label component' },
-  { name: 'Alert', description: 'Alert notification component' },
-  { name: 'Accordion', description: 'Expandable accordion component' },
-  { name: 'Breadcrumb', description: 'Navigation breadcrumb component' },
-  { name: 'Avatar', description: 'User avatar component' },
-  { name: 'Checkbox', description: 'Checkbox input component' },
+  { name: 'Button', description: 'Interactive button component', href: '/button' },
+  { name: 'Button Group', description: 'Grouped button controls', href: '/button-group' },
+  { name: 'Card', description: 'Container component for grouped content', href: '/card' },
+  { name: 'Badge', description: 'Label component', href: '/badge' },
+  { name: 'Alert', description: 'Alert notification component', href: '/alert' },
+  { name: 'Accordion', description: 'Expandable accordion component', href: '/accordion' },
+  { name: 'Breadcrumb', description: 'Navigation breadcrumb component', href: '/breadcrumb' },
+  { name: 'Avatar', description: 'User avatar component', href: '/avatar' },
+  { name: 'Checkbox', description: 'Checkbox input component', href: '/checkbox' },
   { name: 'Radio Group', description: 'Radio button group component' },
   { name: 'Switch', description: 'Toggle switch component' },
   { name: 'Dialog', description: 'Modal dialog component' },
@@ -24,8 +26,17 @@ const components = [
   { name: 'Progress', description: 'Progress bar component' },
   { name: 'Pagination', description: 'Pagination component' },
   { name: 'Table', description: 'Data table component' },
-  { name: 'Carousel', description: 'Image carousel component' },
-  { name: 'Calendar', description: 'Date picker calendar' },
+  { name: 'Carousel', description: 'Image carousel component', href: '/carousel' },
+  { name: 'Calendar', description: 'Date picker calendar', href: '/calendar' },
+  { name: 'Chart', description: 'Data visualization charts', href: '/chart' },
+  { name: 'Collapsible', description: 'Expandable content sections', href: '/collapsible' },
+  { name: 'Combobox', description: 'Autocomplete and command palette', href: '/combobox' },
+  { name: 'Command', description: 'Command menu for keyboard navigation', href: '/command' },
+  { name: 'Context Menu', description: 'Right-click context menus', href: '/context-menu' },
+  { name: 'Data Table', description: 'Tabular data with sorting and pagination', href: '/data-table' },
+  { name: 'Date Picker', description: 'Calendar date picker component', href: '/date-picker' },
+  { name: 'Dialog', description: 'Modal dialog windows', href: '/dialog' },
+  { name: 'Drawer', description: 'Slide-in panels from screen edges', href: '/drawer' },
   { name: 'Skeleton', description: 'Loading skeleton' },
 ]
 
@@ -81,14 +92,29 @@ export default function Home() {
         <div className="mb-12">
           <h2 className="text-2xl font-bold mb-8">Available Components</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {components.map((component) => (
-              <Card key={component.name} className="hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <CardTitle className="text-base">{component.name}</CardTitle>
-                  <CardDescription>{component.description}</CardDescription>
-                </CardHeader>
-              </Card>
-            ))}
+            {components.map((component) => {
+              if (component.href) {
+                return (
+                  <Link key={component.name} href={component.href}>
+                    <Card className="hover:shadow-lg transition-shadow cursor-pointer">
+                      <CardHeader>
+                        <CardTitle className="text-base">{component.name}</CardTitle>
+                        <CardDescription>{component.description}</CardDescription>
+                      </CardHeader>
+                    </Card>
+                  </Link>
+                )
+              }
+
+              return (
+                <Card key={component.name}>
+                  <CardHeader>
+                    <CardTitle className="text-base">{component.name}</CardTitle>
+                    <CardDescription>{component.description}</CardDescription>
+                  </CardHeader>
+                </Card>
+              )
+            })}
           </div>
         </div>
 
