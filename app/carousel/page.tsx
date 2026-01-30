@@ -20,7 +20,6 @@ import {
   ShowcaseSection,
 } from "@/components/component-page"
 import { Star, Heart, ShoppingCart, Eye } from "lucide-react"
-import Autoplay from "embla-carousel-autoplay"
 
 export default function CarouselPage() {
   const [api, setApi] = useState<CarouselApi>()
@@ -175,48 +174,6 @@ export default function CarouselPage() {
             <CarouselPrevious />
             <CarouselNext />
           </Carousel>
-        </ShowcaseSection>
-
-        <Separator />
-
-        {/* Auto-play Carousel */}
-        <ShowcaseSection title="Auto-play">
-          <div className="mx-auto max-w-md space-y-4">
-            <Carousel
-              plugins={[
-                Autoplay({
-                  delay: 2000,
-                }),
-              ]}
-              className="w-full"
-            >
-              <CarouselContent>
-                {[
-                  { title: "Summer Sale", subtitle: "Up to 50% off", color: "from-orange-500 to-red-500" },
-                  { title: "New Arrivals", subtitle: "Check out latest products", color: "from-blue-500 to-purple-500" },
-                  { title: "Free Shipping", subtitle: "On orders over $50", color: "from-green-500 to-teal-500" },
-                  { title: "Member Exclusive", subtitle: "Special deals for you", color: "from-pink-500 to-rose-500" },
-                ].map((slide, index) => (
-                  <CarouselItem key={index}>
-                    <Card className="border-0">
-                      <CardContent className={`flex flex-col items-center justify-center p-8 bg-gradient-to-br ${slide.color} text-white rounded-xl`}>
-                        <h3 className="text-3xl font-bold mb-2">{slide.title}</h3>
-                        <p className="text-lg opacity-90">{slide.subtitle}</p>
-                        <Button variant="secondary" className="mt-4">
-                          Shop Now
-                        </Button>
-                      </CardContent>
-                    </Card>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <CarouselPrevious />
-              <CarouselNext />
-            </Carousel>
-            <p className="text-sm text-center text-muted-foreground">
-              Auto-playing every 2 seconds
-            </p>
-          </div>
         </ShowcaseSection>
 
         <Separator />
