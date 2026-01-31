@@ -15,6 +15,13 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import {
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+  type ChartConfig,
+} from "@/components/ui/chart"
+import { Bar, BarChart, CartesianGrid, XAxis } from "recharts"
+import {
   ArrowUpRight,
   ArrowDownRight,
   Users,
@@ -28,6 +35,32 @@ import {
   Calendar,
   Filter,
 } from "lucide-react"
+
+const chartData = [
+  { month: "January", revenue: 4200, profit: 2400 },
+  { month: "February", revenue: 3800, profit: 2100 },
+  { month: "March", revenue: 5100, profit: 2900 },
+  { month: "April", revenue: 4600, profit: 2600 },
+  { month: "May", revenue: 5400, profit: 3100 },
+  { month: "June", revenue: 4900, profit: 2800 },
+  { month: "July", revenue: 6200, profit: 3600 },
+  { month: "August", revenue: 5800, profit: 3300 },
+  { month: "September", revenue: 6500, profit: 3800 },
+  { month: "October", revenue: 6100, profit: 3500 },
+  { month: "November", revenue: 7200, profit: 4200 },
+  { month: "December", revenue: 6800, profit: 3900 },
+]
+
+const chartConfig = {
+  revenue: {
+    label: "Revenue",
+    color: "hsl(var(--chart-1))",
+  },
+  profit: {
+    label: "Profit",
+    color: "hsl(var(--chart-2))",
+  },
+} satisfies ChartConfig
 
 export default function DashboardPage() {
   return (
@@ -131,32 +164,56 @@ export default function DashboardPage() {
           {/* Main Content */}
           <div className="col-span-4 space-y-8">
             {/* Overview Chart */}
-            <Card className="outline outline-1 outline-offset-[-1px] outline-border shadow-[0px_1px_2px_0px_rgba(0,0,0,0.10)]">
-              <CardHeader>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <CardTitle>Overview</CardTitle>
-                    <CardDescription>Monthly revenue and growth</CardDescription>
-                  </div>
-                  <Tabs defaultValue="revenue" className="w-auto">
+            <Tabs defaultValue="revenue" className="space-y-4">
+              <Card className="outline outline-1 outline-offset-[-1px] outline-border shadow-[0px_1px_2px_0px_rgba(0,0,0,0.10)]">
+                <CardHeader>
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <CardTitle>Overview</CardTitle>
+                      <CardDescription>Monthly revenue and growth</CardDescription>
+                    </div>
                     <TabsList>
                       <TabsTrigger value="revenue">Revenue</TabsTrigger>
                       <TabsTrigger value="profit">Profit</TabsTrigger>
                     </TabsList>
-                  </Tabs>
-                </div>
-              </CardHeader>
-              <CardContent>
-                {/* Chart Placeholder */}
-                <div className="h-[300px] flex items-center justify-center border-2 border-dashed border-border rounded-lg">
-                  <div className="text-center text-muted-foreground">
-                    <TrendingUp className="h-12 w-12 mx-auto mb-2" />
-                    <p className="text-sm">Chart Component</p>
-                    <p className="text-xs">Revenue Overview</p>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
+                </CardHeader>
+                <CardContent>
+                  <TabsContent value="revenue" className="mt-0 space-y-4">
+                    <ChartContainer config={chartConfig} className="h-[300px] w-full">
+                      <BarChart data={chartData}>
+                        <CartesianGrid vertical={false} />
+                        <XAxis
+                          dataKey="month"
+                          tickLine={false}
+                          tickMargin={10}
+                          axisLine={false}
+                          tickFormatter={(value) => value.slice(0, 3)}
+                        />
+                        <ChartTooltip content={<ChartTooltipContent />} />
+                        <Bar dataKey="revenue" fill="var(--color-revenue)" radius={4} />
+                      </BarChart>
+                    </ChartContainer>
+                  </TabsContent>
+                  <TabsContent value="profit" className="mt-0 space-y-4">
+                    <ChartContainer config={chartConfig} className="h-[300px] w-full">
+                      <BarChart data={chartData}>
+                        <CartesianGrid vertical={false} />
+                        <XAxis
+                          dataKey="month"
+                          tickLine={false}
+                          tickMargin={10}
+                          axisLine={false}
+                          tickFormatter={(value) => value.slice(0, 3)}
+                        />
+                        <ChartTooltip content={<ChartTooltipContent />} />
+                        <Bar dataKey="profit" fill="var(--color-profit)" radius={4} />
+                      </BarChart>
+                    </ChartContainer>
+                  </TabsContent>
+                </CardContent>
+              </Card>
+            </Tabs>
 
             {/* Recent Transactions */}
             <Card className="outline outline-1 outline-offset-[-1px] outline-border shadow-[0px_1px_2px_0px_rgba(0,0,0,0.10)]">
