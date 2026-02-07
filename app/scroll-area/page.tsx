@@ -1,9 +1,10 @@
 "use client"
 
+import React from "react"
 import { Separator } from "@/components/ui/separator"
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import { Badge } from "@/components/ui/badge"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import {
   ComponentPageLayout,
   ComponentHeader,

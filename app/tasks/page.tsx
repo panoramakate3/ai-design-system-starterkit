@@ -1,12 +1,19 @@
 "use client"
 
 import { useState } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
 import { Checkbox } from "@/components/ui/checkbox"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Avatar, AvatarFallback } from "@/components/ui/avatar"
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table"
 import {
   Select,
   SelectContent,
@@ -14,359 +21,360 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { Separator } from "@/components/ui/separator"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import {
-  Plus,
-  Search,
-  Filter,
-  Calendar,
-  Clock,
-  Flag,
-  MoreHorizontal,
-  CheckCircle2,
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import {
   Circle,
-  AlertCircle,
+  ArrowUp,
+  ArrowRight,
+  ArrowDown,
+  MoreHorizontal,
+  ChevronLeft,
+  ChevronRight,
+  ChevronsLeft,
+  ChevronsRight,
+  ExternalLink,
+  Plus,
 } from "lucide-react"
 
 interface Task {
   id: string
+  taskNumber: string
+  category: "Documentation" | "Bug" | "Feature"
   title: string
-  description: string
-  status: "todo" | "in-progress" | "done"
-  priority: "low" | "medium" | "high"
-  dueDate: string
-  assignee: string
-  tags: string[]
+  status: "In Progress" | "Backlog" | "Todo" | "Canceled" | "Done"
+  priority: "High" | "Medium" | "Low"
 }
 
 export default function TasksPage() {
-  const [selectedTab, setSelectedTab] = useState("all")
+  const [selectedRows, setSelectedRows] = useState<string[]>([])
+  const [currentPage, setCurrentPage] = useState(1)
+  const [rowsPerPage, setRowsPerPage] = useState(10)
 
   const tasks: Task[] = [
     {
       id: "1",
-      title: "Design system documentation",
-      description: "Create comprehensive documentation for the design system components",
-      status: "in-progress",
-      priority: "high",
-      dueDate: "2024-02-15",
-      assignee: "Sarah Chen",
-      tags: ["documentation", "design"],
+      taskNumber: "TASK-8782",
+      category: "Documentation",
+      title: "You can't compress the program without quantifying the open-source SSD pixel!",
+      status: "In Progress",
+      priority: "Medium",
     },
     {
       id: "2",
-      title: "Implement dark mode",
-      description: "Add dark mode support across all components",
-      status: "todo",
-      priority: "medium",
-      dueDate: "2024-02-20",
-      assignee: "Alex Kim",
-      tags: ["feature", "ui"],
+      taskNumber: "TASK-7878",
+      category: "Documentation",
+      title: "Try to calculate the EXE feed, maybe it will index the multi-byte pixel!",
+      status: "Backlog",
+      priority: "Medium",
     },
     {
       id: "3",
-      title: "Fix responsive layout issues",
-      description: "Address mobile responsiveness bugs in the dashboard",
-      status: "in-progress",
-      priority: "high",
-      dueDate: "2024-02-12",
-      assignee: "Maria Garcia",
-      tags: ["bug", "responsive"],
+      taskNumber: "TASK-7839",
+      category: "Bug",
+      title: "We need to bypass the neural TCP card!",
+      status: "Todo",
+      priority: "High",
     },
     {
       id: "4",
-      title: "User authentication flow",
-      description: "Implement OAuth integration for social login",
-      status: "todo",
-      priority: "high",
-      dueDate: "2024-02-25",
-      assignee: "John Smith",
-      tags: ["feature", "backend"],
+      taskNumber: "TASK-5562",
+      category: "Feature",
+      title: "The SAS interface is down, bypass the open-source pixel so we can back up the PNG bandwidth!",
+      status: "Backlog",
+      priority: "Medium",
     },
     {
       id: "5",
-      title: "Performance optimization",
-      description: "Optimize bundle size and improve loading times",
-      status: "done",
-      priority: "medium",
-      dueDate: "2024-02-08",
-      assignee: "Emma Wilson",
-      tags: ["performance"],
+      taskNumber: "TASK-8686",
+      category: "Feature",
+      title: "I'll parse the wireless SSL protocol, that should driver the API panel!",
+      status: "Canceled",
+      priority: "Medium",
     },
     {
       id: "6",
-      title: "Unit test coverage",
-      description: "Increase test coverage to 80% for critical components",
-      status: "in-progress",
-      priority: "medium",
-      dueDate: "2024-02-18",
-      assignee: "David Lee",
-      tags: ["testing"],
+      taskNumber: "TASK-1280",
+      category: "Bug",
+      title: "Use the digital TLS panel, then you can transmit the haptic system!",
+      status: "Done",
+      priority: "High",
     },
     {
       id: "7",
-      title: "API error handling",
-      description: "Improve error messages and user feedback for API failures",
-      status: "todo",
-      priority: "low",
-      dueDate: "2024-02-28",
-      assignee: "Sarah Chen",
-      tags: ["api", "ux"],
+      taskNumber: "TASK-7262",
+      category: "Feature",
+      title: "The UTF8 application is down, parse the neural bandwidth so we can back up the PNG firewall!",
+      status: "Done",
+      priority: "High",
     },
     {
       id: "8",
-      title: "Accessibility audit",
-      description: "Conduct WCAG 2.1 AA compliance audit",
-      status: "done",
-      priority: "high",
-      dueDate: "2024-02-05",
-      assignee: "Alex Kim",
-      tags: ["a11y", "audit"],
+      taskNumber: "TASK-1138",
+      category: "Feature",
+      title: "Generating the driver won't do anything, we need to quantify the 1080p SMTP bandwidth!",
+      status: "In Progress",
+      priority: "Medium",
+    },
+    {
+      id: "9",
+      taskNumber: "TASK-7184",
+      category: "Feature",
+      title: "We need to program the back-end THX pixel!",
+      status: "Todo",
+      priority: "Low",
+    },
+    {
+      id: "10",
+      taskNumber: "TASK-5160",
+      category: "Documentation",
+      title: "Calculating the bus won't do anything, we need to navigate the back-end JSON protocol!",
+      status: "In Progress",
+      priority: "High",
     },
   ]
 
-  const filteredTasks = tasks.filter((task) => {
-    if (selectedTab === "all") return true
-    return task.status === selectedTab
-  })
+  const totalPages = Math.ceil(tasks.length / rowsPerPage)
+  const startIndex = (currentPage - 1) * rowsPerPage
+  const endIndex = startIndex + rowsPerPage
+  const currentTasks = tasks.slice(startIndex, endIndex)
 
-  const getPriorityColor = (priority: string) => {
+  const toggleRowSelection = (id: string) => {
+    setSelectedRows((prev) =>
+      prev.includes(id) ? prev.filter((rowId) => rowId !== id) : [...prev, id]
+    )
+  }
+
+  const toggleAllRows = () => {
+    if (selectedRows.length === tasks.length) {
+      setSelectedRows([])
+    } else {
+      setSelectedRows(tasks.map((task) => task.id))
+    }
+  }
+
+  const getStatusIcon = () => {
+    return <Circle className="h-4 w-4" />
+  }
+
+  const getPriorityIcon = (priority: string) => {
     switch (priority) {
-      case "high":
+      case "High":
+        return <ArrowUp className="h-4 w-4" />
+      case "Low":
+        return <ArrowDown className="h-4 w-4" />
+      default:
+        return <ArrowRight className="h-4 w-4" />
+    }
+  }
+
+  const getCategoryColor = (category: string) => {
+    switch (category) {
+      case "Documentation":
+        return "bg-blue-50 text-blue-700 border-blue-200"
+      case "Bug":
         return "bg-red-50 text-red-700 border-red-200"
-      case "medium":
-        return "bg-yellow-50 text-yellow-700 border-yellow-200"
-      case "low":
-        return "bg-green-50 text-green-700 border-green-200"
+      case "Feature":
+        return "bg-purple-50 text-purple-700 border-purple-200"
       default:
         return "bg-gray-50 text-gray-700 border-gray-200"
     }
   }
 
-  const getStatusIcon = (status: string) => {
-    switch (status) {
-      case "done":
-        return <CheckCircle2 className="h-4 w-4 text-green-600" />
-      case "in-progress":
-        return <Clock className="h-4 w-4 text-blue-600" />
-      default:
-        return <Circle className="h-4 w-4 text-gray-400" />
-    }
-  }
-
   return (
-    <div className="min-h-screen bg-background font-['Inter']">
+    <div className="min-h-screen bg-background p-8">
       {/* Header */}
-      <div className="border-b border-border bg-background">
-        <div className="flex h-16 items-center px-8">
-          <h1 className="text-2xl font-semibold">Tasks</h1>
-          <div className="ml-auto flex items-center gap-4">
-            <Button variant="outline" size="sm">
-              <Filter className="mr-2 h-4 w-4" />
-              Filter
-            </Button>
-            <Button size="sm">
-              <Plus className="mr-2 h-4 w-4" />
-              New Task
-            </Button>
-          </div>
-        </div>
+      <div className="flex items-center justify-between mb-8">
+        <h1 className="text-3xl font-bold">Tasks</h1>
+        <Button variant="outline" size="sm">
+          View in Shadcn
+          <ExternalLink className="ml-2 h-4 w-4" />
+        </Button>
       </div>
 
-      <div className="p-8">
-        <div className="grid gap-8 lg:grid-cols-4">
-          {/* Sidebar */}
-          <div className="lg:col-span-1 space-y-4">
-            {/* Search */}
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-              <Input placeholder="Search tasks..." className="pl-9" />
+      {/* Main Card */}
+      <div className="border border-border rounded-lg bg-card">
+        {/* Welcome Section */}
+        <div className="p-6 border-b border-border">
+          <div className="flex items-start justify-between">
+            <div>
+              <h2 className="text-2xl font-semibold mb-1">Welcome back!</h2>
+              <p className="text-muted-foreground">Here's a list of your tasks for this month!</p>
             </div>
-
-            {/* Stats Cards */}
-            <Card className="outline outline-1 outline-offset-[-1px] outline-border shadow-[0px_1px_2px_0px_rgba(0,0,0,0.10)]">
-              <CardHeader className="pb-3">
-                <CardTitle className="text-sm font-medium">Overview</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-muted-foreground">Total Tasks</span>
-                  <span className="text-2xl font-bold">{tasks.length}</span>
-                </div>
-                <Separator />
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-muted-foreground">Completed</span>
-                  <span className="text-sm font-semibold text-green-600">
-                    {tasks.filter((t) => t.status === "done").length}
-                  </span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-muted-foreground">In Progress</span>
-                  <span className="text-sm font-semibold text-blue-600">
-                    {tasks.filter((t) => t.status === "in-progress").length}
-                  </span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-muted-foreground">To Do</span>
-                  <span className="text-sm font-semibold text-gray-600">
-                    {tasks.filter((t) => t.status === "todo").length}
-                  </span>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Priority Filter */}
-            <Card className="outline outline-1 outline-offset-[-1px] outline-border shadow-[0px_1px_2px_0px_rgba(0,0,0,0.10)]">
-              <CardHeader className="pb-3">
-                <CardTitle className="text-sm font-medium">Priority</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-2">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <Flag className="h-4 w-4 text-red-600" />
-                    <span className="text-sm">High</span>
-                  </div>
-                  <Badge variant="outline" className="bg-red-50 text-red-700 border-red-200">
-                    {tasks.filter((t) => t.priority === "high").length}
-                  </Badge>
-                </div>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <Flag className="h-4 w-4 text-yellow-600" />
-                    <span className="text-sm">Medium</span>
-                  </div>
-                  <Badge variant="outline" className="bg-yellow-50 text-yellow-700 border-yellow-200">
-                    {tasks.filter((t) => t.priority === "medium").length}
-                  </Badge>
-                </div>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <Flag className="h-4 w-4 text-green-600" />
-                    <span className="text-sm">Low</span>
-                  </div>
-                  <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
-                    {tasks.filter((t) => t.priority === "low").length}
-                  </Badge>
-                </div>
-              </CardContent>
-            </Card>
+            <Avatar className="h-10 w-10">
+              <AvatarFallback>CN</AvatarFallback>
+            </Avatar>
           </div>
+        </div>
 
-          {/* Main Content */}
-          <div className="lg:col-span-3">
-            <Tabs defaultValue="all" onValueChange={setSelectedTab}>
-              <div className="flex items-center justify-between mb-6">
-                <TabsList>
-                  <TabsTrigger value="all">
-                    All
-                    <Badge variant="secondary" className="ml-2">
-                      {tasks.length}
-                    </Badge>
-                  </TabsTrigger>
-                  <TabsTrigger value="todo">
-                    To Do
-                    <Badge variant="secondary" className="ml-2">
-                      {tasks.filter((t) => t.status === "todo").length}
-                    </Badge>
-                  </TabsTrigger>
-                  <TabsTrigger value="in-progress">
-                    In Progress
-                    <Badge variant="secondary" className="ml-2">
-                      {tasks.filter((t) => t.status === "in-progress").length}
-                    </Badge>
-                  </TabsTrigger>
-                  <TabsTrigger value="done">
-                    Done
-                    <Badge variant="secondary" className="ml-2">
-                      {tasks.filter((t) => t.status === "done").length}
-                    </Badge>
-                  </TabsTrigger>
-                </TabsList>
+        {/* Filter Section */}
+        <div className="p-6 border-b border-border">
+          <div className="flex items-center gap-4">
+            <Input
+              placeholder="Filter tasks..."
+              className="max-w-sm"
+            />
+            <Button variant="outline" size="sm">
+              <Circle className="mr-2 h-4 w-4" />
+              Status
+            </Button>
+            <Button variant="outline" size="sm">
+              <Circle className="mr-2 h-4 w-4" />
+              Priority
+            </Button>
+            <div className="ml-auto flex items-center gap-2">
+              <Button variant="outline" size="sm">
+                <Circle className="mr-2 h-4 w-4" />
+                View
+              </Button>
+              <Button size="sm">
+                <Plus className="mr-2 h-4 w-4" />
+                Add Task
+              </Button>
+            </div>
+          </div>
+        </div>
 
-                <Select defaultValue="date">
-                  <SelectTrigger className="w-[180px]">
-                    <SelectValue placeholder="Sort by" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="date">Due Date</SelectItem>
-                    <SelectItem value="priority">Priority</SelectItem>
-                    <SelectItem value="status">Status</SelectItem>
-                    <SelectItem value="assignee">Assignee</SelectItem>
-                  </SelectContent>
-                </Select>
+        {/* Table */}
+        <div className="relative w-full overflow-auto">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead className="w-12">
+                  <Checkbox
+                    checked={selectedRows.length === tasks.length}
+                    onCheckedChange={toggleAllRows}
+                  />
+                </TableHead>
+                <TableHead className="w-32">Task</TableHead>
+                <TableHead>Title</TableHead>
+                <TableHead className="w-32">Status</TableHead>
+                <TableHead className="w-32">Priority</TableHead>
+                <TableHead className="w-12"></TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {currentTasks.map((task) => (
+                <TableRow key={task.id}>
+                  <TableCell>
+                    <Checkbox
+                      checked={selectedRows.includes(task.id)}
+                      onCheckedChange={() => toggleRowSelection(task.id)}
+                    />
+                  </TableCell>
+                  <TableCell className="font-medium">{task.taskNumber}</TableCell>
+                  <TableCell>
+                    <div className="flex items-center gap-2">
+                      <Badge variant="outline" className={getCategoryColor(task.category)}>
+                        {task.category}
+                      </Badge>
+                      <span className="text-sm">{task.title}</span>
+                    </div>
+                  </TableCell>
+                  <TableCell>
+                    <div className="flex items-center gap-2">
+                      {getStatusIcon()}
+                      <span className="text-sm">{task.status}</span>
+                    </div>
+                  </TableCell>
+                  <TableCell>
+                    <div className="flex items-center gap-2 text-muted-foreground">
+                      {getPriorityIcon(task.priority)}
+                      <span className="text-sm">{task.priority}</span>
+                    </div>
+                  </TableCell>
+                  <TableCell>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <Button variant="ghost" size="icon" className="h-8 w-8">
+                          <MoreHorizontal className="h-4 w-4" />
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent align="end">
+                        <DropdownMenuItem>Edit</DropdownMenuItem>
+                        <DropdownMenuItem>Delete</DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
+
+        {/* Footer / Pagination */}
+        <div className="flex items-center justify-between px-6 py-4 border-t border-border">
+          <div className="text-sm text-muted-foreground">
+            {selectedRows.length} of {tasks.length} row(s) selected.
+          </div>
+          <div className="flex items-center gap-6">
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-muted-foreground">Rows per page</span>
+              <Select
+                value={rowsPerPage.toString()}
+                onValueChange={(value) => {
+                  setRowsPerPage(Number(value))
+                  setCurrentPage(1)
+                }}
+              >
+                <SelectTrigger className="h-8 w-16">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="10">10</SelectItem>
+                  <SelectItem value="20">20</SelectItem>
+                  <SelectItem value="50">50</SelectItem>
+                  <SelectItem value="100">100</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-muted-foreground">
+                Page {currentPage} of {totalPages}
+              </span>
+              <div className="flex items-center gap-1">
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="h-8 w-8"
+                  onClick={() => setCurrentPage(1)}
+                  disabled={currentPage === 1}
+                >
+                  <ChevronsLeft className="h-4 w-4" />
+                </Button>
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="h-8 w-8"
+                  onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}
+                  disabled={currentPage === 1}
+                >
+                  <ChevronLeft className="h-4 w-4" />
+                </Button>
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="h-8 w-8"
+                  onClick={() => setCurrentPage((prev) => Math.min(totalPages, prev + 1))}
+                  disabled={currentPage === totalPages}
+                >
+                  <ChevronRight className="h-4 w-4" />
+                </Button>
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="h-8 w-8"
+                  onClick={() => setCurrentPage(totalPages)}
+                  disabled={currentPage === totalPages}
+                >
+                  <ChevronsRight className="h-4 w-4" />
+                </Button>
               </div>
-
-              <TabsContent value={selectedTab} className="mt-0 space-y-4">
-                {filteredTasks.map((task) => (
-                  <Card
-                    key={task.id}
-                    className="outline outline-1 outline-offset-[-1px] outline-border shadow-[0px_1px_2px_0px_rgba(0,0,0,0.10)] hover:shadow-[0px_1px_3px_0px_rgba(0,0,0,0.10)] transition-shadow"
-                  >
-                    <CardContent className="p-6">
-                      <div className="flex items-start gap-4">
-                        <Checkbox className="mt-1" />
-                        <div className="flex-1 space-y-3">
-                          <div className="flex items-start justify-between gap-4">
-                            <div className="flex-1">
-                              <div className="flex items-center gap-2 mb-1">
-                                {getStatusIcon(task.status)}
-                                <h3 className="font-semibold">{task.title}</h3>
-                              </div>
-                              <p className="text-sm text-muted-foreground">{task.description}</p>
-                            </div>
-                            <Button variant="ghost" size="icon" className="h-8 w-8">
-                              <MoreHorizontal className="h-4 w-4" />
-                            </Button>
-                          </div>
-
-                          <div className="flex items-center gap-4 flex-wrap">
-                            <Badge variant="outline" className={getPriorityColor(task.priority)}>
-                              <Flag className="mr-1 h-3 w-3" />
-                              {task.priority}
-                            </Badge>
-
-                            <div className="flex items-center gap-1 text-sm text-muted-foreground">
-                              <Calendar className="h-3 w-3" />
-                              {task.dueDate}
-                            </div>
-
-                            <div className="flex items-center gap-2">
-                              <Avatar className="h-6 w-6">
-                                <AvatarFallback className="text-xs">
-                                  {task.assignee.split(" ").map((n) => n[0]).join("")}
-                                </AvatarFallback>
-                              </Avatar>
-                              <span className="text-sm text-muted-foreground">{task.assignee}</span>
-                            </div>
-
-                            <div className="flex items-center gap-2">
-                              {task.tags.map((tag) => (
-                                <Badge key={tag} variant="secondary" className="text-xs">
-                                  {tag}
-                                </Badge>
-                              ))}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-
-                {filteredTasks.length === 0 && (
-                  <Card className="outline outline-1 outline-offset-[-1px] outline-border shadow-[0px_1px_2px_0px_rgba(0,0,0,0.10)]">
-                    <CardContent className="p-12 text-center">
-                      <AlertCircle className="h-12 w-12 mx-auto mb-4 text-muted-foreground" />
-                      <h3 className="font-semibold mb-2">No tasks found</h3>
-                      <p className="text-sm text-muted-foreground">
-                        There are no tasks in this category.
-                      </p>
-                    </CardContent>
-                  </Card>
-                )}
-              </TabsContent>
-            </Tabs>
+            </div>
           </div>
         </div>
       </div>

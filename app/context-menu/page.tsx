@@ -26,8 +26,8 @@ import {
 } from "@/components/component-page"
 import {
   Copy,
-  Cut,
-  Paste,
+  Scissors,
+  Clipboard,
   Trash2,
   Download,
   Share2,
@@ -81,13 +81,13 @@ export default function ContextMenuPage() {
                   <ContextMenuShortcut>⌘C</ContextMenuShortcut>
                 </ContextMenuItem>
                 <ContextMenuItem>
-                  <Cut className="mr-2 h-4 w-4" />
+                  <Scissors className="mr-2 h-4 w-4" />
                   Cut
                   <ContextMenuShortcut>⌘X</ContextMenuShortcut>
                 </ContextMenuItem>
                 <ContextMenuItem>
-                  <Paste className="mr-2 h-4 w-4" />
-                  Paste
+                  <Clipboard className="mr-2 h-4 w-4" />
+                  Clipboard
                   <ContextMenuShortcut>⌘V</ContextMenuShortcut>
                 </ContextMenuItem>
                 <ContextMenuSeparator />
@@ -391,13 +391,13 @@ export default function ContextMenuPage() {
                   <ContextMenuShortcut>⌘C</ContextMenuShortcut>
                 </ContextMenuItem>
                 <ContextMenuItem>
-                  <Cut className="mr-2 h-4 w-4" />
+                  <Scissors className="mr-2 h-4 w-4" />
                   Cut
                   <ContextMenuShortcut>⌘X</ContextMenuShortcut>
                 </ContextMenuItem>
                 <ContextMenuItem>
-                  <Paste className="mr-2 h-4 w-4" />
-                  Paste
+                  <Clipboard className="mr-2 h-4 w-4" />
+                  Clipboard
                   <ContextMenuShortcut>⌘V</ContextMenuShortcut>
                 </ContextMenuItem>
                 <ContextMenuSeparator />
@@ -487,12 +487,12 @@ export default function ContextMenuPage() {
                   Copy
                 </ContextMenuItem>
                 <ContextMenuItem disabled>
-                  <Cut className="mr-2 h-4 w-4" />
+                  <Scissors className="mr-2 h-4 w-4" />
                   Cut (No selection)
                 </ContextMenuItem>
                 <ContextMenuItem disabled>
-                  <Paste className="mr-2 h-4 w-4" />
-                  Paste (Clipboard empty)
+                  <Clipboard className="mr-2 h-4 w-4" />
+                  Clipboard (Clipboard empty)
                 </ContextMenuItem>
                 <ContextMenuSeparator />
                 <ContextMenuItem>

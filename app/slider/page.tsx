@@ -10,7 +10,7 @@ import {
 } from "@/components/component-page"
 import Link from "next/link"
 import { useState } from "react"
-import { Volume2, VolumeX, Brightness4, DollarSign } from "lucide-react"
+import { Volume2, VolumeX, Sun, DollarSign } from "lucide-react"
 
 export default function SliderPage() {
   const [value, setValue] = useState([50])
@@ -198,7 +198,7 @@ export default function SliderPage() {
           <div className="w-full max-w-md space-y-4 rounded-lg border p-6">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <Brightness4 className="h-5 w-5 text-muted-foreground" />
+                <Sun className="h-5 w-5 text-muted-foreground" />
                 <span className="text-sm font-medium">Brightness</span>
               </div>
               <span className="text-sm text-muted-foreground">
