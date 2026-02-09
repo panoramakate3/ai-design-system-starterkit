@@ -1,0 +1,149 @@
+/**
+ * Design Tokens - CSS Custom Properties
+ * Extracted from Figma design system
+ *
+ * These tokens work alongside shadcn/ui's existing CSS variables
+ * DO NOT modify :root variables that shadcn/ui uses
+ *
+ * @see docs/tokens/TOKEN-USAGE-GUIDE.md
+ */
+
+:root {
+  /* ===== Extended Color Tokens ===== */
+  /* These supplement shadcn/ui's color system */
+
+  /* Background variants */
+  --color-bg-dark: #0a0a0a;
+  --color-bg-dark-subtle: #171717;
+  --color-bg-light: #ffffff;
+  --color-bg-light-subtle: #f5f5f5;
+  --color-bg-light-muted: #fafafa;
+
+  /* Border variants */
+  --color-border-default: #737373;
+  --color-border-light: #e5e5e5;
+
+  /* Accent colors */
+  --color-accent-blue: #0090ff;
+  --color-accent-blue-light: #5eb1ef;
+  --color-accent-blue-subtle: #e7f5ff;
+
+  /* ===== Typography Tokens ===== */
+  /* Font families */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'Geist Mono', 'SF Mono', Monaco, 'Courier New', monospace;
+
+  /* Font sizes - complete scale */
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-base: 16px;
+  --text-lg: 18px;
+  --text-xl: 20px;
+  --text-2xl: 24px;
+  --text-3xl: 30px;
+  --text-4xl: 36px;
+  --text-5xl: 48px;
+  --text-6xl: 60px;
+  --text-7xl: 72px;
+  --text-8xl: 96px;
+  --text-9xl: 128px;
+
+  /* Line heights */
+  --leading-xs: 16px;
+  --leading-sm: 20px;
+  --leading-base: 24px;
+  --leading-lg: 28px;
+  --leading-xl: 28px;
+  --leading-2xl: 32px;
+  --leading-3xl: 36px;
+  --leading-4xl: 40px;
+  --leading-5xl: 48px;
+  --leading-6xl: 60px;
+  --leading-7xl: 72px;
+  --leading-8xl: 96px;
+  --leading-9xl: 128px;
+
+  /* Font weights */
+  --font-thin: 100;
+  --font-extralight: 200;
+  --font-light: 300;
+  --font-regular: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+  --font-extrabold: 800;
+  --font-black: 900;
+
+  /* ===== Spacing Tokens ===== */
+  /* Core spacing scale */
+  --spacing-0: 0px;
+  --spacing-px: 1px;
+  --spacing-0-5: 2px;
+  --spacing-1: 4px;
+  --spacing-1-5: 6px;
+  --spacing-2: 8px;
+  --spacing-2-5: 10px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-5: 20px;
+  --spacing-6: 24px;
+  --spacing-7: 28px;
+  --spacing-8: 32px;
+  --spacing-10: 40px;
+  --spacing-12: 48px;
+  --spacing-14: 56px;
+  --spacing-16: 64px;
+  --spacing-20: 80px;
+  --spacing-24: 96px;
+
+  /* Component spacing */
+  --button-padding-x: var(--spacing-4);
+  --button-padding-y: var(--spacing-2);
+  --input-padding-x: var(--spacing-3);
+  --input-padding-y: var(--spacing-2);
+  --card-padding: var(--spacing-6);
+
+  /* ===== Effect Tokens ===== */
+  /* Extended shadows */
+  --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-base: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-focus: 0 0 0 3px rgb(0 144 255 / 0.2);
+  --shadow-destructive: 0 0 0 3px rgb(239 68 68 / 0.2);
+
+  /* Backdrop blur */
+  --backdrop-blur-sm: blur(4px);
+  --backdrop-blur: blur(8px);
+  --backdrop-blur-md: blur(12px);
+  --backdrop-blur-lg: blur(16px);
+  --backdrop-blur-xl: blur(24px);
+  --backdrop-blur-2xl: blur(40px);
+  --backdrop-blur-3xl: blur(64px);
+
+  /* Transitions */
+  --transition-fast: 100ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-medium: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ===== Dark Mode Overrides ===== */
+.dark {
+  /* Adjust colors for dark mode if needed */
+  --color-bg-light: #171717;
+  --color-bg-light-subtle: #262626;
+  --color-bg-light-muted: #404040;
+  --color-border-light: #404040;
+}
+
+/* ===== Utility Classes ===== */
+/* Optional utility classes for using design tokens */
+
+.text-xs { font-size: var(--text-xs); line-height: var(--leading-xs); }
+.text-sm { font-size: var(--text-sm); line-height: var(--leading-sm); }
+.text-base { font-size: var(--text-base); line-height: var(--leading-base); }
+.text-lg { font-size: var(--text-lg); line-height: var(--leading-lg); }
+.text-xl { font-size: var(--text-xl); line-height: var(--leading-xl); }
+.text-2xl { font-size: var(--text-2xl); line-height: var(--leading-2xl); }
+.text-3xl { font-size: var(--text-3xl); line-height: var(--leading-3xl); }
+.text-4xl { font-size: var(--text-4xl); line-height: var(--leading-4xl); }
+.text-5xl { font-size: var(--text-5xl); line-height: var(--leading-5xl); }

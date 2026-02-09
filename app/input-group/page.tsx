@@ -144,7 +144,7 @@ export default function InputGroupPage() {
             <InputGroupIcon>
               <Search className="h-4 w-4" />
             </InputGroupIcon>
-            <Input placeholder="Search..." className="pl-9" />
+            <Input placeholder="Search..." className="pl-10" />
           </div>
         </ShowcaseSection>
 
@@ -179,7 +179,7 @@ export default function InputGroupPage() {
               <InputGroupIcon>
                 <Search className="h-4 w-4" />
               </InputGroupIcon>
-              <Input placeholder="Search..." className="rounded-r-none pl-9" />
+              <Input placeholder="Search..." className="rounded-r-none pl-10" />
             </div>
             <Button className="rounded-l-none">Search</Button>
           </InputGroup>
@@ -377,7 +377,7 @@ export default function InputGroupPage() {
               </InputGroupIcon>
               <Input
                 placeholder="Ask, Search or Chat..."
-                className="rounded-r-none pl-9"
+                className="rounded-r-none pl-10"
               />
             </div>
             <InputGroupAddon>
@@ -420,7 +420,7 @@ export default function InputGroupPage() {
                 id="password-validation"
                 type="password"
                 placeholder="Enter password"
-                className="pl-9"
+                className="pl-10"
               />
             </div>
             <InputGroupText>
@@ -480,33 +480,13 @@ export default function InputGroupPage() {
 
         {/* Card Number Input */}
         <ShowcaseSection title="Card Number">
-          <div className="space-y-4 max-w-sm">
-            <div className="space-y-2">
-              <Label htmlFor="card-1">Card number</Label>
-              <Input
-                id="card-1"
-                placeholder="Card number"
-                maxLength={19}
-              />
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="card-2">Card number with icon</Label>
-              <div className="relative">
-                <InputGroupIcon position="right">
-                  <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none">
-                    <rect x="2" y="5" width="20" height="14" rx="2" stroke="currentColor" strokeWidth="2"/>
-                    <path d="M2 10H22" stroke="currentColor" strokeWidth="2"/>
-                  </svg>
-                </InputGroupIcon>
-                <Input
-                  id="card-2"
-                  placeholder="Card number"
-                  className="pr-9"
-                  maxLength={19}
-                />
-              </div>
-            </div>
+          <div className="space-y-2 max-w-sm">
+            <Label htmlFor="card-1">Card number</Label>
+            <Input
+              id="card-1"
+              placeholder="Card number"
+              maxLength={19}
+            />
           </div>
         </ShowcaseSection>
       </ComponentShowcase>

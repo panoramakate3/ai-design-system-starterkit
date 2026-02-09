@@ -11,24 +11,14 @@ import {
   ShowcaseSection,
 } from "@/components/component-page"
 import {
-  Mail,
-  Search,
-  Lock,
-  User,
   Phone,
   CreditCard,
-  Eye,
-  EyeOff,
   DollarSign,
-  AtSign,
   Calendar,
-  Upload,
 } from "lucide-react"
 import Link from "next/link"
-import { useState } from "react"
 
 export default function InputPage() {
-  const [showPassword, setShowPassword] = useState(false)
 
   return (
     <ComponentPageLayout>
@@ -123,53 +113,33 @@ export default function InputPage() {
 
         {/* With Icon - Search */}
         <ShowcaseSection title="With Icon (Search)">
-          <div className="relative max-w-sm">
-            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-            <Input
-              type="search"
-              placeholder="Search..."
-              className="pl-9"
-            />
-          </div>
+          <Input
+            type="search"
+            placeholder="Search..."
+            className="max-w-sm"
+          />
         </ShowcaseSection>
 
         <Separator />
 
         {/* With Icon - Email */}
         <ShowcaseSection title="With Icon (Email)">
-          <div className="relative max-w-sm">
-            <Mail className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-            <Input
-              type="email"
-              placeholder="Email address"
-              className="pl-9"
-            />
-          </div>
+          <Input
+            type="email"
+            placeholder="Email address"
+            className="max-w-sm"
+          />
         </ShowcaseSection>
 
         <Separator />
 
         {/* Password with Toggle */}
         <ShowcaseSection title="Password with Toggle">
-          <div className="relative max-w-sm">
-            <Lock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-            <Input
-              type={showPassword ? "text" : "password"}
-              placeholder="Password"
-              className="pl-9 pr-9"
-            />
-            <button
-              type="button"
-              onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
-            >
-              {showPassword ? (
-                <EyeOff className="h-4 w-4" />
-              ) : (
-                <Eye className="h-4 w-4" />
-              )}
-            </button>
-          </div>
+          <Input
+            type="password"
+            placeholder="Password"
+            className="max-w-sm"
+          />
         </ShowcaseSection>
 
         <Separator />
@@ -213,7 +183,7 @@ export default function InputPage() {
             <Input
               type="number"
               placeholder="0.00"
-              className="pl-9"
+              className="pl-10"
               step="0.01"
             />
           </div>
@@ -228,7 +198,7 @@ export default function InputPage() {
             <Input
               type="tel"
               placeholder="+1 (555) 000-0000"
-              className="pl-9"
+              className="pl-10"
             />
           </div>
         </ShowcaseSection>
@@ -241,7 +211,7 @@ export default function InputPage() {
             <Calendar className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
             <Input
               type="date"
-              className="pl-9"
+              className="pl-10"
             />
           </div>
         </ShowcaseSection>
@@ -255,7 +225,7 @@ export default function InputPage() {
             <Input
               type="text"
               placeholder="1234 5678 9012 3456"
-              className="pl-9"
+              className="pl-10"
               maxLength={19}
             />
           </div>
@@ -338,65 +308,34 @@ export default function InputPage() {
 
         <Separator />
 
-        {/* Read Only */}
-        <ShowcaseSection title="Read Only">
-          <div className="grid gap-2 max-w-sm">
-            <Label htmlFor="readonly-input">Username</Label>
-            <Input
-              id="readonly-input"
-              type="text"
-              defaultValue="shadcn"
-              readOnly
-              className="bg-muted"
-            />
-            <p className="text-sm text-muted-foreground">
-              This field is read-only.
-            </p>
-          </div>
-        </ShowcaseSection>
-
-        <Separator />
-
         {/* Full Width Form */}
         <ShowcaseSection title="Full Width Form">
           <div className="w-full space-y-4">
             <div className="grid gap-2">
               <Label htmlFor="full-name">Full Name</Label>
-              <div className="relative">
-                <User className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-                <Input
-                  id="full-name"
-                  type="text"
-                  placeholder="John Doe"
-                  className="pl-9"
-                />
-              </div>
+              <Input
+                id="full-name"
+                type="text"
+                placeholder="John Doe"
+              />
             </div>
 
             <div className="grid gap-2">
               <Label htmlFor="email-full">Email Address</Label>
-              <div className="relative">
-                <Mail className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-                <Input
-                  id="email-full"
-                  type="email"
-                  placeholder="john.doe@example.com"
-                  className="pl-9"
-                />
-              </div>
+              <Input
+                id="email-full"
+                type="email"
+                placeholder="john.doe@example.com"
+              />
             </div>
 
             <div className="grid gap-2">
               <Label htmlFor="password-full">Password</Label>
-              <div className="relative">
-                <Lock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-                <Input
-                  id="password-full"
-                  type="password"
-                  placeholder="••••••••"
-                  className="pl-9"
-                />
-              </div>
+              <Input
+                id="password-full"
+                type="password"
+                placeholder="••••••••"
+              />
             </div>
 
             <Button className="w-full">Create Account</Button>

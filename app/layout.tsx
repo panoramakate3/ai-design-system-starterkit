@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import { DocsWrapper } from "@/components/docs/docs-wrapper";
+import { ThemeProvider } from "@/components/theme-provider";
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,14 +35,41 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <Script id="theme-script" strategy="beforeInteractive">
+          {`
+            (function() {
+              const savedTheme = localStorage.getItem('theme') || 'system';
+              const root = document.documentElement;
+
+              if (savedTheme === 'dark') {
+                root.classList.remove('light', 'midnight');
+                root.classList.add('dark');
+              } else if (savedTheme === 'light') {
+                root.classList.remove('dark', 'midnight');
+                root.classList.add('light');
+              } else if (savedTheme === 'midnight') {
+                root.classList.remove('dark', 'light');
+                root.classList.add('midnight');
+              } else {
+                const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                root.classList.remove('dark', 'light', 'midnight');
+                root.classList.add(systemTheme);
+              }
+            })();
+          `}
+        </Script>
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <DocsWrapper>
-          {children}
-        </DocsWrapper>
-        <Toaster />
+        <ThemeProvider>
+          <DocsWrapper>
+            {children}
+          </DocsWrapper>
+          <Toaster />
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -1,0 +1,124 @@
+/**
+ * Shadcn/ui Component Overrides
+ * Component-specific styling using design tokens
+ *
+ * IMPORTANT: These styles extend shadcn/ui components
+ * DO NOT modify component HTML structure or core logic
+ * Only use CSS custom properties and :where() selector for overrides
+ *
+ * @see docs/tokens/COMPONENT-REFERENCE.md
+ */
+
+/* ===== Button Overrides ===== */
+:where(.btn, button[class*="button"]) {
+  transition: all var(--transition-base);
+}
+
+:where(button[class*="button-default"]) {
+  box-shadow: var(--shadow-xs);
+}
+
+:where(button[class*="button-default"]):hover {
+  box-shadow: var(--shadow-sm);
+}
+
+/* ===== Card Overrides ===== */
+:where([class*="card"]) {
+  padding: var(--card-padding);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition-medium);
+}
+
+:where([class*="card"]):hover {
+  box-shadow: var(--shadow-md);
+}
+
+/* ===== Input Overrides ===== */
+:where(input[type="text"], input[type="email"], input[type="password"], input[type="search"], textarea) {
+  padding: var(--input-padding-y) var(--input-padding-x);
+  transition: all var(--transition-base);
+}
+
+:where(input:focus, textarea:focus) {
+  box-shadow: var(--shadow-focus);
+}
+
+/* ===== Dropdown & Popover Overrides ===== */
+:where([role="menu"], [role="listbox"], [data-radix-popper-content-wrapper]) {
+  box-shadow: var(--shadow-lg);
+  backdrop-filter: var(--backdrop-blur);
+  -webkit-backdrop-filter: var(--backdrop-blur);
+}
+
+/* ===== Modal/Dialog Overrides ===== */
+:where([role="dialog"], [role="alertdialog"]) {
+  box-shadow: var(--shadow-xl);
+}
+
+/* ===== Focus States ===== */
+:where(*:focus-visible) {
+  outline: 2px solid var(--color-accent-blue);
+  outline-offset: 2px;
+  transition: outline var(--transition-fast);
+}
+
+/* ===== Destructive States ===== */
+:where(button[class*="destructive"]:focus-visible) {
+  box-shadow: var(--shadow-destructive);
+}
+
+/* ===== Typography Utilities ===== */
+/* Apply typography tokens to common elements */
+:where(h1) {
+  font-size: var(--text-4xl);
+  line-height: var(--leading-4xl);
+  font-weight: var(--font-bold);
+}
+
+:where(h2) {
+  font-size: var(--text-3xl);
+  line-height: var(--leading-3xl);
+  font-weight: var(--font-semibold);
+}
+
+:where(h3) {
+  font-size: var(--text-2xl);
+  line-height: var(--leading-2xl);
+  font-weight: var(--font-semibold);
+}
+
+:where(h4) {
+  font-size: var(--text-xl);
+  line-height: var(--leading-xl);
+  font-weight: var(--font-medium);
+}
+
+:where(h5) {
+  font-size: var(--text-lg);
+  line-height: var(--leading-lg);
+  font-weight: var(--font-medium);
+}
+
+:where(h6) {
+  font-size: var(--text-base);
+  line-height: var(--leading-base);
+  font-weight: var(--font-medium);
+}
+
+:where(p) {
+  font-size: var(--text-base);
+  line-height: var(--leading-base);
+}
+
+:where(small) {
+  font-size: var(--text-sm);
+  line-height: var(--leading-sm);
+}
+
+/* ===== Spacing Utilities ===== */
+.gap-xs { gap: var(--spacing-1); }
+.gap-sm { gap: var(--spacing-2); }
+.gap { gap: var(--spacing-4); }
+.gap-md { gap: var(--spacing-6); }
+.gap-lg { gap: var(--spacing-8); }
+.gap-xl { gap: var(--spacing-10); }
