@@ -10,10 +10,11 @@ import {
   ShowcaseSection,
 } from "@/components/component-page"
 import { addDays, subDays } from "date-fns"
+import type { DateRange } from "react-day-picker"
 
 export default function CalendarPage() {
   const [date, setDate] = useState<Date | undefined>(new Date())
-  const [dateRange, setDateRange] = useState<{ from: Date | undefined; to: Date | undefined }>({
+  const [dateRange, setDateRange] = useState<DateRange | undefined>({
     from: new Date(),
     to: addDays(new Date(), 7),
   })
@@ -77,7 +78,7 @@ export default function CalendarPage() {
               <Calendar
                 mode="range"
                 selected={dateRange}
-                onSelect={(range) => setDateRange(range || { from: undefined, to: undefined })}
+                onSelect={setDateRange}
                 numberOfMonths={2}
               />
             </div>
