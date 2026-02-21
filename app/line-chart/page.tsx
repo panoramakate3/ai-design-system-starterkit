@@ -371,7 +371,7 @@ export default function LineChartPage() {
                       fill: "var(--color-tablet)",
                     }}
                   />
-                  <ChartLegend content={<ChartLegendContent />} />
+                  <ChartLegend content={(props) => <ChartLegendContent payload={props.payload} verticalAlign={props.verticalAlign} />} />
                 </LineChart>
               </ChartContainer>
             </CardContent>
@@ -503,7 +503,7 @@ export default function LineChartPage() {
                       r: 6,
                     }}
                   />
-                  <ChartLegend content={<ChartLegendContent />} />
+                  <ChartLegend content={(props) => <ChartLegendContent payload={props.payload} verticalAlign={props.verticalAlign} />} />
                 </LineChart>
               </ChartContainer>
             </CardContent>

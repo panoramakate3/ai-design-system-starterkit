@@ -150,7 +150,7 @@ export default function BarChartPage() {
                   />
                   <Bar dataKey="desktop" fill="var(--color-desktop)" radius={4} />
                   <Bar dataKey="mobile" fill="var(--color-mobile)" radius={4} />
-                  <ChartLegend content={<ChartLegendContent />} />
+                  <ChartLegend content={(props) => <ChartLegendContent payload={props.payload} verticalAlign={props.verticalAlign} />} />
                 </BarChart>
               </ChartContainer>
             </CardContent>
@@ -244,7 +244,7 @@ export default function BarChartPage() {
                   <ChartTooltip content={<ChartTooltipContent indicator="line" />} />
                   <Bar dataKey="desktop" fill="var(--color-desktop)" radius={4} />
                   <Bar dataKey="mobile" fill="var(--color-mobile)" radius={4} />
-                  <ChartLegend content={<ChartLegendContent />} />
+                  <ChartLegend content={(props) => <ChartLegendContent payload={props.payload} verticalAlign={props.verticalAlign} />} />
                 </BarChart>
               </ChartContainer>
             </CardContent>
@@ -277,7 +277,7 @@ export default function BarChartPage() {
                   <Bar dataKey="desktop" stackId="a" fill="var(--color-desktop)" radius={[0, 0, 4, 4]} />
                   <Bar dataKey="mobile" stackId="a" fill="var(--color-mobile)" radius={[0, 0, 0, 0]} />
                   <Bar dataKey="tablet" stackId="a" fill="var(--color-tablet)" radius={[4, 4, 0, 0]} />
-                  <ChartLegend content={<ChartLegendContent />} />
+                  <ChartLegend content={(props) => <ChartLegendContent payload={props.payload} verticalAlign={props.verticalAlign} />} />
                 </BarChart>
               </ChartContainer>
             </CardContent>

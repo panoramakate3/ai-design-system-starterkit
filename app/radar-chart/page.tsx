@@ -150,7 +150,7 @@ export default function RadarChartPage() {
                     fill="var(--color-mobile)"
                     fillOpacity={0.6}
                   />
-                  <ChartLegend content={<ChartLegendContent />} />
+                  <ChartLegend content={(props) => <ChartLegendContent payload={props.payload} verticalAlign={props.verticalAlign} />} />
                 </RadarChart>
               </ChartContainer>
             </CardContent>
@@ -191,7 +191,7 @@ export default function RadarChartPage() {
                     stroke="var(--color-mobile)"
                     strokeWidth={2}
                   />
-                  <ChartLegend content={<ChartLegendContent />} />
+                  <ChartLegend content={(props) => <ChartLegendContent payload={props.payload} verticalAlign={props.verticalAlign} />} />
                 </RadarChart>
               </ChartContainer>
             </CardContent>
@@ -272,7 +272,7 @@ export default function RadarChartPage() {
                       fillOpacity: 1,
                     }}
                   />
-                  <ChartLegend content={<ChartLegendContent />} />
+                  <ChartLegend content={(props) => <ChartLegendContent payload={props.payload} verticalAlign={props.verticalAlign} />} />
                 </RadarChart>
               </ChartContainer>
             </CardContent>
