@@ -149,7 +149,7 @@ export default function AreaChartPage() {
                     stroke="var(--color-desktop)"
                     stackId="a"
                   />
-                  <ChartLegend content={ChartLegendContent} />
+                  <ChartLegend content={(props) => <ChartLegendContent {...props} />} />
                 </AreaChart>
               </ChartContainer>
             </CardContent>
@@ -301,7 +301,7 @@ export default function AreaChartPage() {
                     fillOpacity={0.3}
                     stroke="var(--color-mobile)"
                   />
-                  <ChartLegend content={ChartLegendContent} />
+                  <ChartLegend content={(props) => <ChartLegendContent {...props} />} />
                 </AreaChart>
               </ChartContainer>
             </CardContent>
@@ -347,7 +347,7 @@ export default function AreaChartPage() {
                     stroke="var(--color-mobile)"
                     stackId="a"
                   />
-                  <ChartLegend content={ChartLegendContent} />
+                  <ChartLegend content={(props) => <ChartLegendContent {...props} />} />
                 </AreaChart>
               </ChartContainer>
             </CardContent>
