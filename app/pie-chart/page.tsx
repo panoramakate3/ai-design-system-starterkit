@@ -283,7 +283,7 @@ export default function PieChartPage() {
                   />
                   <Pie data={chartData} dataKey="visitors" nameKey="browser" />
                   <ChartLegend
-                    content={<ChartLegendContent nameKey="browser" />}
+                    content={(props) => <ChartLegendContent payload={props.payload} verticalAlign={props.verticalAlign} nameKey="browser" />}
                     className="-translate-y-2 flex-wrap gap-2 [&>*]:basis-1/4 [&>*]:justify-center"
                   />
                 </PieChart>
@@ -317,7 +317,7 @@ export default function PieChartPage() {
                     nameKey="browser"
                     innerRadius={60}
                     strokeWidth={5}
-                    activeIndex={0}
+                    {...{ activeIndex: 0 } as any}
                     activeShape={({
                       outerRadius = 0,
                       ...props

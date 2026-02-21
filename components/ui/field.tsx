@@ -62,7 +62,7 @@ const FieldControl = React.forwardRef<
   const { id, error } = useFieldContext()
 
   // Clone the child element and add the id and aria-describedby
-  const child = React.Children.only(children) as React.ReactElement
+  const child = React.Children.only(children) as React.ReactElement<any>
   const clonedChild = React.cloneElement(child, {
     id: `${id}-control`,
     "aria-describedby": `${id}-description`,

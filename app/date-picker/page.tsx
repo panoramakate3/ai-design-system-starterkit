@@ -31,7 +31,7 @@ import { addDays, subDays } from "date-fns"
 
 export default function DatePickerPage() {
   const [date, setDate] = useState<Date>()
-  const [dateRange, setDateRange] = useState<{ from: Date | undefined; to: Date | undefined }>({
+  const [dateRange, setDateRange] = useState<{ from: Date | undefined; to?: Date }>({
     from: undefined,
     to: undefined,
   })
@@ -178,8 +178,8 @@ export default function DatePickerPage() {
               <PopoverContent className="w-auto p-0" align="start">
                 <Calendar
                   mode="range"
-                  selected={dateRange}
-                  onSelect={(range) => setDateRange(range || { from: undefined, to: undefined })}
+                  selected={dateRange as any}
+                  onSelect={(range) => setDateRange(range ?? { from: undefined })}
                   numberOfMonths={2}
                   initialFocus
                 />
