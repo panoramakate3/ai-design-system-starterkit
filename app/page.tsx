@@ -14,7 +14,6 @@ const components = [
   { name: 'Checkbox', description: 'Checkbox input component', href: '/checkbox' },
   { name: 'Radio Group', description: 'Radio button group component' },
   { name: 'Switch', description: 'Toggle switch component' },
-  { name: 'Dialog', description: 'Modal dialog component' },
   { name: 'Dropdown Menu', description: 'Dropdown menu component' },
   { name: 'Popover', description: 'Popover tooltip component' },
   { name: 'Tooltip', description: 'Tooltip component' },
